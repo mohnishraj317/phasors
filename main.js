@@ -14,21 +14,16 @@ cnvSketch.width = innerWidth;
 cnvSketch.height = innerHeight;
 
 const phasors = [
-  new Phasor(0.02, 40, Math.PI / 3),
-  new Phasor(0.2, 4, Math.PI / 2),
-  new Phasor(0.02, 20, Math.PI / 3),
-  new Phasor(-0.05, 70, Math.PI),
-  new Phasor(-0.04, 30),
-  new Phasor(-0.03, 20, Math.PI / 3),
-  new Phasor(0.02, 40),
-  new Phasor(0.01, 100),
-  new Phasor(0.1, 4),
+  new Phasor(0.02, 100, Math.PI / 2),
+  new Phasor(0.03, 40, Math.PI / 4),
+  new Phasor(0.03, 40, -Math.PI / 4),
 ];
 
-const p1 = phasors.reduce((a, b) => {
-  b.addPhasor(a);
-  return b;
-});
+const p1 = phasors.map((p, i, self) => {
+  if (i < self.length - 1) p.addPhasor(self[i + 1]);
+
+  return p;
+})[0];
 
 let frames;
 
