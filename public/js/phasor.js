@@ -2,7 +2,7 @@ class Phasor {
   constructor(omega, r, phase = 0) {
     this.initial = [innerWidth / 2, innerHeight / 2];
     this.omega = omega;
-    this.r = r;
+    this.r = r / 2;
     this.phase = phase;
     this.path = new Path2D();
 
@@ -34,12 +34,14 @@ class Phasor {
     ctx.save();
     ctx.beginPath();
     ctx.arc(...this.initial, this.r, 0, Math.PI * 2);
+    ctx.strokeStyle = "#0005";
     ctx.stroke();
 
     ctx.beginPath();
     ctx.translate(...this.initial);
     ctx.moveTo(0, 0);
     ctx.lineTo(x, y);
+    ctx.strokeStyle = "#0005";
     ctx.stroke();
 
     ctx.restore();
